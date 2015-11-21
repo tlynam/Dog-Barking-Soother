@@ -1,5 +1,4 @@
 require 'bigdecimal'
-require 'active_support/core_ext/string/filters'
 
 class FileParser
   attr_reader :info
@@ -13,8 +12,8 @@ class FileParser
     File.open(@filename, "r") do |f|
       f.each_line do |line|
         attribute = line.split(":")
-        key = attribute[0].squish
-        value = attribute[1].squish
+        key = attribute[0].strip
+        value = attribute[1].strip
         @info[key] = BigDecimal.new(value)
       end
     end
