@@ -4,8 +4,8 @@ require 'active_support/core_ext/string/filters'
 class FileParser
   attr_reader :info
 
-  def initialize
-    @filename = ARGV[0]
+  def initialize(filename:)
+    @filename = ARGV[0] || filename
     @info = {}
   end
 
@@ -20,7 +20,3 @@ class FileParser
     end
   end
 end
-
-fp = FileParser.new
-fp.parse
-puts fp.info
