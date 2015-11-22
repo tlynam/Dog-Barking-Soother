@@ -9,13 +9,11 @@ class FileParser
   end
 
   def parse
-    File.open(@filename, "r") do |f|
-      f.each_line do |line|
-        attribute = line.split(":")
-        key = attribute[0].strip
-        value = attribute[1].strip
-        @info[key] = BigDecimal.new(value)
-      end
+    IO.foreach(@filename) do |line|
+      attribute = line.split(":")
+      key = attribute[0].strip
+      value = attribute[1].strip
+      @info[key] = BigDecimal.new(value)
     end
   end
 end
