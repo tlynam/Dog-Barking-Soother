@@ -22,7 +22,7 @@ loop do
 
   # If max noise is over 0.02, play white noise
   if fp.info["Maximum amplitude"] > 0.02
-    `aplay ocean.mp3 -d 2`
+    `aplay short_wave.wav`
     current_volume = `amixer get PCM|grep -o [0-9]*%|sed 's/%//'`
     `amixer cset numid=1 -- #{current_volume.to_i + 10}%`
   else
@@ -30,5 +30,6 @@ loop do
     `amixer cset numid=1 -- 70%`
     puts 'Good doggie, all quiet'
   end
-  puts 'current volume: ' + `amixer get PCM|grep -o [0-9]*%|sed 's/%//'`
+
+  puts 'Current volume: ' + `amixer get PCM|grep -o [0-9]*%|sed 's/%//'` + "\n"
 end
